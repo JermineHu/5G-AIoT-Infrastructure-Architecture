@@ -1,0 +1,7 @@
+FROM scratch
+COPY init-bin.sh init-bin.sh
+COPY --from=busybox:glibc /bin/busybox /bin/busybox
+COPY --from=busybox:glibc /lib/* /lib/
+ADD lib64.tar.gz /
+RUN ["busybox" ,"sh","/init-bin.sh"]
+CMD ["sh"]
